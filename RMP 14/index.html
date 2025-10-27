@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Drones.com - Адаптивный магазин</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Стили обнуления */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Базовые стили для десктопа (1920px+) */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            overflow-x: hidden; /* Запрещаем горизонтальный скролл */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            width: 100%;
+        }
+
+        /* Шапка - десктоп */
+        .header {
+            background-color: #d70000;
+            color: white;
+            padding: 20px 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 15px;
+            font-size: 36px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu li {
+            margin-left: 35px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #ffcccc;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .header-actions a {
+            margin-left: 25px;
+            font-size: 20px;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .header-actions a:hover {
+            color: #ffcccc;
+        }
+
+        /* Герой секция */
+        .hero {
+            background: linear-gradient(rgba(215, 0, 0, 0.9), rgba(215, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1473968512647-3e447244af8f?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 24px;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: white;
+            color: #d70000;
+            padding: 18px 45px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 20px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background-color: #ffcccc;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Слайдер Военная коллекция */
+        .military-collection {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            width: 100%;
+        }
+
+        .slider-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 50px;
+            color: #ff6b6b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .slider-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: #ff6b6b;
+            margin: 20px auto 0;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            width: 100%;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            padding: 40px;
+            text-align: center;
+            background: linear-gradient(145deg, #2d2d2d, #1f1f1f);
+            border-radius: 20px;
+            box-sizing: border-box;
+        }
+
+        .slide-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .slide-image {
+            flex: 1;
+            height: 300px;
+            background: linear-gradient(45deg, #333, #555);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            color: #ff6b6b;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            overflow: hidden;
+            min-width: 0; /* Важно для flex-элементов */
+        }
+
+        .slide-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .slide-info {
+            flex: 1;
+            text-align: left;
+            min-width: 0; /* Важно для flex-элементов */
+        }
+
+        .slide h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+            word-wrap: break-word;
+        }
+
+        .slide-features {
+            list-style: none;
+            margin-bottom: 30px;
+            padding: 0;
+        }
+
+        .slide-features li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            word-wrap: break-word;
+        }
+
+        .slide-features li:before {
+            content: '✓';
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .slide-price {
+            font-size: 28px;
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-bottom: 20px;
+            word-wrap: break-word;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 107, 107, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .slider-btn:hover {
+            background: #ff6b6b;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #555;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: #ff6b6b;
+        }
+
+        /* Категории */
+        .categories {
+            padding: 100px 0;
+            width: 100%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            color: #d70000;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: #d70000;
+            margin: 20px auto 0;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            width: 100%;
+        }
+
+        .category-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .category-icon {
+            font-size: 60px;
+            color: #d70000;
+            margin-bottom: 25px;
+        }
+
+        .category-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+            word-wrap: break-word;
+        }
+
+        .category-card p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+
+        /* Каталог */
+        .catalog {
+            padding: 100px 0;
+            background-color: #f9f9f9;
+            width: 100%;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            width: 100%;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 250px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .product-image img {
+            max-height: 100%;
+            transition: transform 0.5s;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 25px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .product-info h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+            word-wrap: break-word;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d70000;
+            margin-bottom: 20px;
+            word-wrap: break-word;
+        }
+
+        .product-rating {
+            color: #ffc107;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .add-to-cart {
+            background-color: #d70000;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            flex: 1;
+            margin-right: 10px;
+            min-width: 0; /* Важно для кнопок в flex-контейнере */
+        }
+
+        .add-to-cart:hover {
+            background-color: #b30000;
+        }
+
+        .view-details {
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            flex: 1;
+            margin-left: 10px;
+            min-width: 0; /* Важно для кнопок в flex-контейнере */
+        }
+
+        .view-details:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Преимущества */
+        .features {
+            padding: 100px 0;
+            width: 100%;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+            width: 100%;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 40px 30px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .feature i {
+            font-size: 50px;
+            color: #d70000;
+            margin-bottom: 25px;
+        }
+
+        .feature h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #333;
+            word-wrap: break-word;
+        }
+
+        .feature p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+
+        /* Футер */
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 80px 0 40px;
+            width: 100%;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: #d70000;
+            word-wrap: break-word;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+            word-wrap: break-word;
+        }
+
+        .footer-column ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            word-wrap: break-word;
+        }
+
+        .footer-column ul li a:hover {
+            color: #ffcccc;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: #444;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            color: white;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .social-links a:hover {
+            background-color: #d70000;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        /* Адаптивные стили для планшетов */
+        @media (max-width: 1024px) {
+            .slide-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .slide-info {
+                text-align: center;
+            }
+            .slider-title {
+                font-size: 36px;
+            }
+            .categories-grid,
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .container {
+                padding: 0 20px;
+            }
+        }
+
+        /* Адаптивные стили для мобильных устройств */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+                max-width: 100%;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .logo {
+                font-size: 24px;
+                justify-content: center;
+            }
+            
+            .logo i {
+                font-size: 28px;
+                margin-right: 10px;
+            }
+            
+            .nav-menu {
+                justify-content: center;
+                margin: 15px 0;
+            }
+            
+            .nav-menu li {
+                margin: 0 10px 10px;
+            }
+            
+            .nav-menu a {
+                font-size: 14px;
+            }
+            
+            .header-actions {
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .header-actions a {
+                margin: 0 10px;
+                font-size: 18px;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+                margin-bottom: 20px;
+                padding: 0 10px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+                margin-bottom: 30px;
+                padding: 0 10px;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+                font-size: 16px;
+            }
+            
+            .slider-title {
+                font-size: 28px;
+                margin-bottom: 30px;
+                padding: 0 10px;
+            }
+            
+            .slide {
+                padding: 20px;
+            }
+            
+            .slide h3 {
+                font-size: 24px;
+            }
+            
+            .slide-image {
+                height: 200px;
+                font-size: 60px;
+            }
+            
+            .slider-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            .slide-price {
+                font-size: 24px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 40px;
+                padding: 0 10px;
+            }
+            
+            .categories,
+            .catalog,
+            .features {
+                padding: 60px 0;
+            }
+            
+            .categories-grid,
+            .products-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .category-card {
+                padding: 30px 20px;
+            }
+            
+            .category-icon {
+                font-size: 50px;
+                margin-bottom: 20px;
+            }
+            
+            .category-card h3 {
+                font-size: 20px;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .add-to-cart,
+            .view-details {
+                margin: 0;
+                width: 100%;
+            }
+            
+            .feature {
+                padding: 30px 20px;
+            }
+            
+            .feature i {
+                font-size: 40px;
+                margin-bottom: 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .footer {
+                padding: 60px 0 30px;
+            }
+            
+            .hero p br {
+                display: none;
+            }
+        }
+
+        /* Адаптивные стили для очень маленьких экранов */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 24px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 14px;
+            }
+            
+            .slider-title {
+                font-size: 24px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .slide h3 {
+                font-size: 20px;
+            }
+            
+            .slide-features li {
+                font-size: 14px;
+            }
+            
+            .slide-price {
+                font-size: 20px;
+            }
+            
+            .category-card h3 {
+                font-size: 18px;
+            }
+            
+            .product-info h3 {
+                font-size: 18px;
+            }
+            
+            .product-price {
+                font-size: 20px;
+            }
+            
+            .container {
+                padding: 0 10px;
+            }
+            
+            .slide {
+                padding: 15px;
+            }
+            
+            .slide-content {
+                gap: 20px;
+            }
+        }
+
+        /* Дополнительные исправления для очень узких экранов */
+        @media (max-width: 360px) {
+            .logo {
+                font-size: 20px;
+            }
+            
+            .nav-menu li {
+                margin: 0 5px 5px;
+            }
+            
+            .nav-menu a {
+                font-size: 12px;
+            }
+            
+            .hero h1 {
+                font-size: 20px;
+            }
+            
+            .slider-title {
+                font-size: 20px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-helicopter"></i>
+                    <span>Best Drones.com</span>
+                </div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="#">Каталог</a></li>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Доставка</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Герой секция -->
+    <section class="hero">
+        <div class="container">
+            <h1>Лучшие дроны для любых целей</h1>
+            <p>От профессиональных съемок до развлечений - у нас есть<br>идеальный дрон для вас</p>
+            <a href="#" class="btn">Смотреть каталог</a>
+        </div>
+    </section>
+
+    <!-- Слайдер Военная коллекция -->
+    <section class="military-collection">
+        <div class="container">	
+            <h2 class="slider-title">Военная коллекция</h2>
+            <div class="slider-container">
+                <div class="slider">
+                    <!-- Слайд 1: Mavic 3T -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <div class="slide-image">
+                                <img src="i (1).webp" alt="Mavic 3T">
+                            </div>
+                            <div class="slide-info">
+                                <h3>Mavic 3T</h3>
+                                <ul class="slide-features">
+                                    <li>Тепловизионная камера высокого разрешения</li>
+                                    <li>Дальность полета до 30 км</li>
+                                    <li>Защита от помех и перехвата</li>
+                                    <li>Ночное видение</li>
+                                    <li>Автономная навигация</li>
+                                </ul>
+                                <div class="slide-price">450 000 ₽</div>
+                                <button class="add-to-cart">Заказать</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Слайд 2: FPV kamikadze -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <div class="slide-image">
+                                <img src="fpv (3).webp" alt="FPV Kamikadze">
+                            </div>
+                            <div class="slide-info">
+                                <h3>FPV Kamikadze</h3>
+                                <ul class="slide-features">
+                                    <li>Скорость до 120 км/ч</li>
+                                    <li>FPV очки в комплекте</li>
+                                    <li>Прочная карбоновая рама</li>
+                                    <li>Быстрый отклик управления</li>
+                                    <li>Идеален для тренировок</li>
+                                </ul>
+                                <div class="slide-price">89 990 ₽</div>
+                                <button class="add-to-cart">Заказать</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Слайд 3: Гексакоптер -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <div class="slide-image">
+                                <img src="Yaga2.png" alt="Гексакоптер X9">
+                            </div>
+                            <div class="slide-info">
+                                <h3>Гексакоптер X9</h3>
+                                <ul class="slide-features">
+                                    <li>6 моторов для максимальной стабильности</li>
+                                    <li>Грузоподъемность до 15 кг</li>
+                                    <li>Полет до 45 минут</li>
+                                    <li>Всепогодное исполнение</li>
+                                    <li>Система автовозврата</li>
+                                </ul>
+                                <div class="slide-price">680 000 ₽</div>
+                                <button class="add-to-cart">Заказать</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Кнопки навигации -->
+                <button class="slider-btn prev">‹</button>
+                <button class="slider-btn next">›</button>
+                
+                <!-- Точки навигации -->
+                <div class="slider-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Остальные секции -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Категории дронов</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Для съемки</h3>
+                    <p>Профессиональные дроны с камерами высокого разрешения</p>
+                    <a href="#" class="btn">Смотреть</a>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-racing-flag"></i>
+                    </div>
+                    <h3>Гоночные</h3>
+                    <p>Быстрые и маневренные дроны для соревнований</p>
+                    <a href="#" class="btn">Смотреть</a>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Для начинающих</h3>
+                    <p>Простые в управлении дроны для новичков</p>
+                    <a href="#" class="btn">Смотреть</a>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Промышленные</h3>
+                    <p>Специализированные дроны для бизнеса и промышленности</p>
+                    <a href="#" class="btn">Смотреть</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Best Drones.com</h3>
+                    <p>Лучший выбор дронов для профессионалов и любителей. Качество, надежность и выгодные цены.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Категории</h3>
+                    <ul>
+                        <li><a href="#">Для съемки</a></li>
+                        <li><a href="#">Гоночные</a></li>
+                        <li><a href="#">Для начинающих</a></li>
+                        <li><a href="#">Промышленные</a></li>
+                        <li><a href="#">Военные</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Помощь</h3>
+                    <ul>
+                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="#">Гарантия</a></li>
+                        <li><a href="#">Возврат</a></li>
+                        <li><a href="#">Частые вопросы</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Дронова, 15</li>
+                        <li><i class="fas fa-phone"></i> +7 (495) 123-45-67</li>
+                        <li><i class="fas fa-envelope"></i> info@bestdrones.com</li>
+                        <li><i class="fas fa-clock"></i> Пн-Пт: 9:00-20:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Best Drones.com. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Слайдер
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const slider = document.querySelector('.slider');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            currentSlide = (n + totalSlides) % totalSlides;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Обновляем активную точку
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Автопрокрутка
+        let slideInterval = setInterval(nextSlide, 5000);
+
+        // Обработчики событий
+        document.querySelector('.next').addEventListener('click', () => {
+            clearInterval(slideInterval);
+            nextSlide();
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+
+        document.querySelector('.prev').addEventListener('click', () => {
+            clearInterval(slideInterval);
+            prevSlide();
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+
+        // Клик по точкам
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                showSlide(index);
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+        });
+
+        // Остановка автопрокрутки при наведении
+        const sliderContainer = document.querySelector('.slider-container');
+        sliderContainer.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+
+        sliderContainer.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+
+        // Кнопки заказа в слайдере
+        document.querySelectorAll('.military-collection .add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.closest('.slide').querySelector('h3').textContent;
+                alert(`Товар "${productName}" добавлен в корзину!`);
+            });
+        });
+
+        // Остальные обработчики для каталога
+        document.querySelectorAll('.catalog .add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.closest('.product-card').querySelector('h3').textContent;
+                alert(`Товар "${productName}" добавлен в корзину!`);
+            });
+        });
+    </script>
+</body>
+</html>
